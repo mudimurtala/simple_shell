@@ -14,6 +14,10 @@ int main(int argc, char **argv)
 	UNUSED(argc);
 	UNUSED(argc);
 
-	write(STDOUT_FILENO, "MudettaShell$ ", sizeof(char) * 14);
+	/* Checks if shell is in interactive mode */
+	if (isatty(STDIN_FILENO) != 0)
+	{
+		write(STDOUT_FILENO, "MudettaShell$ ", sizeof(char) * 14);
+	}
 	return (0);
 }
