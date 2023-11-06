@@ -1,7 +1,11 @@
 #include "mutaShell.h"
-
-
-
+/**
+ * main - The main entry for any C program
+ * @argc: stores the number of args received
+ * @argv: stores the string received from the user
+ * @env: denotes environment variables
+ * Return:(0) at success
+ */
 
 int main(int argc, char *argv[], char *env[])
 {
