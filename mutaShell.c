@@ -20,7 +20,7 @@ int main(int argc, char *argv[], char *env[])
 	if (isatty(STDIN_FILENO) && isatty(STDOUT_FILENO) && argc == 1)
 	{
 		errno = 2;
-		om = PROMPT_MSG;
+		om = SHOW;
 	}
 
 	errno = 0;
