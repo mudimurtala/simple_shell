@@ -1,4 +1,4 @@
-#include "mutaShell.h"
+#include "mutashell.h"
 
 /**
  * mtalias_printing - add, remove or show aliases
