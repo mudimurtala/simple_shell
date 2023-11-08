@@ -1,35 +1,35 @@
 #include "mutashell.h"
 
 /**
- * mtalias_printing - add, remove or show aliases
- * @mtdata: struct for the program's data
- * @mtalias: name of the alias to be printed
- * Return: zero if sucess, or other number if its declared in the arguments
+ * mt_manageAlias - function to insert, delete or print aliases
+ * @info: struct for the program's info
+ * @name: name of the alias to be displayed
+ * Return: 0 upon success, otherwise user declared number
  */
-int mtalias_printing(mt_program_data *mtdata, char *mtalias)
+int mt_manageAlias(mt_code_info *info, char *alias_name)
 {
 	int ind, ind2, mtalias_len;
 	char buff[250] = {'\0'};
 
-	if (mtdata->mt_list_alias)
+	if (info->mt_listAlias)
 	{
-		mtalias_len = mutaStrlen(mtalias);
-		for (ind = 0; mtdata->mt_list_alias[ind]; ind++)
+		mtalias_len = _strlen(alias_name);
+		for (ind = 0; info->mt_listAlias[ind]; ind++)
 		{
-			if (!mtalias || (mutaStrcomp(mtdata->mt_list_alias[ind], mtalias, mtalias_len)
-						&&	mtdata->mt_list_alias[ind][mtalias_len] == '='))
+			if (!alias_name || (_strcomp(info->mt_listAlias[ind], alias_name, mtalias_len)
+						&&	info->mt_listAlias[ind][mtalias_len] == '='))
 			{
-				for (ind2 = 0; mtdata->mt_list_alias[ind][ind2]; ind2++)
+				for (ind2 = 0; info->mt_listAlias[ind][ind2]; ind2++)
 				{
-					buff[ind2] = mtdata->mt_list_alias[ind][ind2];
-					if (mtdata->mt_list_alias[ind][ind2] == '=')
+					buff[ind2] = info->mt_listAlias[ind][ind2];
+					if (info->mt_listAlias[ind][ind2] == '=')
 						break;
 				}
 				buff[ind2 + 1] = '\0';
-				mutaBuff_add(buff, "'");
-				mutaBuff_add(buff, mtdata->mt_list_alias[ind] + ind2 + 1);
-				mutaBuff_add(buff, "'\n");
-				_output(buff);
+				buff_add(buff, "'");
+				buff_add(buff, info->mt_listAlias[ind] + ind2 + 1);
+				buff_add(buff, "'\n");
+				_print(buff);
 			}
 		}
 	}
@@ -43,24 +43,27 @@ int mtalias_printing(mt_program_data *mtdata, char *mtalias)
  * @name: name of the requested alias.
  * Return: zero if sucess, or other number if its declared in the arguments
  */
-char *find_alias(mt_program_data *mtdata, char *alias_name)
+char *mt_findAlias(mt_code_info *info, char *alias_name)
 {
 	int ind, alias_len;
 
 	/* validate the arguments */
 	if (alias_name == NULL)
+{
 		return (NULL);
-	if (mtdata->mt_list_alias == NULL)
+}
+	if (info->mt_listAlias == NULL)
+{
 		return (NULL);
+}
+	alias_len = _strlen(alias_name);
 
-	alias_len = mutaStrlen(alias_name);
-
-	for (ind = 0; mtdata->mt_list_alias[ind]; ind++)
+	for (ind = 0; info->mt_listAlias[ind]; ind++)
 	{/* Iterates through the environ and check for coincidence of the varname */
-		if (mutaStrcomp(alias_name, mtdata->mt_list_alias[ind], alias_len) &&
-				mtdata->mt_list_alias[ind][alias_len] == '=')
+		if (_strcomp(alias_name, info->mt_listAlias[ind], alias_len) &&
+				info->mt_listAlias[ind][alias_len] == '=')
 		{/* returns the value of the key NAME=  when find it */
-			return (mtdata->mt_list_alias[ind] + alias_len + 1);
+			return (info->mt_listAlias[ind] + alias_len + 1);
 		}
 	}
 	/* returns NULL if did not find it */
@@ -69,18 +72,18 @@ char *find_alias(mt_program_data *mtdata, char *alias_name)
 }
 
 /**
- * position_alias - function to update or overwrite alias
+ * mt_positionAlias - function to update or overwrite alias
  * @mtalias_str: alias to be positioned
- * @mtdata: structure of the program's data
- * Return: 0 on sucess, otherwise any number declared in the argument
+ * @info: structure of the program's data
+ * Return: 0 on success, otherwise any number declared in the argument
  */
-int position_alias(char *mtalias_str, mt_program_data *mtdata)
+int mt_positionAlias(char *mtalias_str, mt_code_info *info)
 {
 	int ind, ind1;
-	char buff[250] = {'0'}, *temp0 = NULL;
+	char buff[250] = {'0'}, *var = NULL;
 
 	/* validate the arguments */
-	if (mtalias_str == NULL ||  mtdata->mt_list_alias == NULL)
+	if (mtalias_str == NULL ||  info->mt_listAlias == NULL)
 		return (1);
 	/* Iterates alias to find = char */
 	for (ind = 0; mtalias_str[ind]; ind++)
@@ -88,27 +91,27 @@ int position_alias(char *mtalias_str, mt_program_data *mtdata)
 			buff[ind] = mtalias_str[ind];
 		else
 		{/* search if the value of the alias is another alias */
-			temp0 = find_alias(mtdata, mtalias_str + ind + 1);
+			var = mt_findAlias(info, mtalias_str + ind + 1);
 			break;
 		}
 
 	/* Iterates through the alias list and check for coincidence of the varname */
-	for (ind1 = 0; mtdata->mt_list_alias[ind1]; ind1++)
-		if (mutaStrcomp(buff, mtdata->mt_list_alias[ind1], ind) &&
-				mtdata->mt_list_alias[ind1][ind] == '=')
+	for (ind1 = 0; info->mt_listAlias[ind1]; ind1++)
+		if (_strcomp(buff, info->mt_listAlias[ind1], ind) &&
+				info->mt_listAlias[ind1][ind] == '=')
 		{/* if the alias alredy exist */
-			free(mtdata->mt_list_alias[ind1]);
+			free(info->mt_listAlias[ind1]);
 			break;
 		}
 
 	/* add the alias */
-	if (temp0)
+	if (var)
 	{/* if the alias already exist */
 		buff_add(buff, "=");
-		buff_add(buff, temp0);
-		mtdata->mt_list_alias[ind1] = mutaStrclone(buff);
+		buff_add(buff, var);
+		info->mt_listAlias[ind1] = _strclone(buff);
 	}
 	else /* if the alias does not exist */
-		mtdata->mt_list_alias[ind1] = mutaStrclone(mtalias_str);
+		info->mt_listAlias[ind1] = _strclone(mtalias_str);
 	return (0);
 }
