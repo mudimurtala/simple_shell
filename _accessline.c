@@ -5,89 +5,89 @@
  * @mt: the stuct that stores data
  * Return: number of bytes
  */
-int _accessline(mt_code_info *mt)
+int _accessline(mt_code_info *info)
 {
-	char ffub[BUFFER_SIZE] = {'\0'};
-	static char *yarr_namm[10] = {NULL};
-	static char yarr_rotar[10] = {'\0'};
-	ssize_t unit_daer, m = 0;
+	char storage[BUFFER_SIZE] = {'\0'};
+	static char *handle_array_inputs[10] = {NULL};
+	static char handle_array_operators[10] = {'\0'};
+	ssize_t data_received, m = 0;
 
 	/* check if doesnot exist more commands in the array */
 	/* and checks the logical operators */
-	if (!yarr_namm[0] || (yarr_rotar[0] == '&' && errno != 0) ||
-		(yarr_rotar[0] == '|' && errno == 0))
+	if (!handle_array_inputs[0] || (handle_array_operators[0] == '&' && errno != 0) ||
+		(handle_array_operators[0] == '|' && errno == 0))
 	{
 		/*free the memory allocated in the array if it exists */
-		for (m = 0; yarr_namm[m]; m++)
+		for (m = 0; handle_array_inputs[m]; m++)
 		{
-			free(yarr_namm[m]);
-			yarr_namm[m] = NULL;
+			free(handle_array_inputs[m]);
+			handle_array_inputs[m] = NULL;
 		}
 
 		/* read from the file descriptor int to buff */
-		unit_daer = read(mt->file_descriptor, &ffub, BUFFER_SIZE - 1);
-		if (unit_daer == 0)
+		data_received = read(info->fd, &storage, BUFFER_SIZE - 1);
+		if (data_received == 0)
 			return (-1);
 
 		/* split lines for \n or ; */
 		m = 0;
 		do {
-			yarr_namm[m] = _strclone(_strsplit(m ? NULL : ffub, "\n;"));
+			handle_array_inputs[m] = _strclone(_strtok(m ? NULL : storage, "\n;"));
 			/*checks and split for && and || operators*/
-			m = view_cigol_opr(yarr_namm, m, yarr_rotar);
-		} while (yarr_namm[m++]);
+			m = check_logic_ops(handle_array_inputs, m, handle_array_operators);
+		} while (handle_array_inputs[m++]);
 	}
 
 	/*obtains the next command (command 0) and remove it for the array*/
-	mt->input_rd = yarr_namm[0];
-	for (m = 0; yarr_namm[m]; m++)
+	info->promp_user = handle_array_inputs[0];
+	for (m = 0; handle_array_inputs[m]; m++)
 	{
-		yarr_namm[m] = yarr_namm[m + 1];
-		yarr_rotar[m] = yarr_rotar[m + 1];
+		handle_array_inputs[m] = handle_array_inputs[m + 1];
+		handle_array_operators[m] = handle_array_operators[m + 1];
 	}
 
-	return (str_length(mt->input_rd));
+	return (_strlen(info->promp_user));
 }
 
 
 /**
-* view_cigol_opr - will handle logicai operators && and ||
-* @yarr_namm: array of the commands.
+* check_logic_ops - will handle logicai operators && and ||
+* @handle_array_inputs: array of the commands.
 * @m: index in the array_commands to be checked
-* @yarr_rotar: array of the logical operators for each previous command
+* @handle_array_operators: array of the logical operators for each previous command
 *
-* Return: index of the last command in the yarr_namm.
+* Return: index of the last command in the handle_array_inputs.
 */
-int view_cigol_opr(char *yarr_namm[], int m, char yarr_rotar[])
+int check_logic_ops(char *handle_array_inputs[], int m, char handle_array_operators[])
 {
-	char *weak = NULL;
+	char *transient = NULL;
 	int n;
 
 	/* checks for the & char in the command line*/
-	for (n = 0; yarr_namm[m] != NULL  && yarr_namm[m][n]; n++)
+	for (n = 0; handle_array_inputs[m] != NULL  && handle_array_inputs[m][n]; n++)
 	{
-		if (yarr_namm[m][n] == '&' && yarr_namm[m][n + 1] == '&')
+		if (handle_array_inputs[m][n] == '&' && handle_array_inputs[m][n + 1] == '&')
 		{
 			/* split the line when chars && was found */
-			weak = yarr_namm[m];
-			yarr_namm[m][n] = '\0';
-			yarr_namm[m] = _strclone(yarr_namm[m]);
-			yarr_namm[m + 1] = _strclone(weak + n + 2);
+			transient = handle_array_inputs[m];
+			handle_array_inputs[m][n] = '\0';
+			handle_array_inputs[m] = _strclone(handle_array_inputs[m]);
+			handle_array_inputs[m + 1] = _strclone(transient + n + 2);
 			m++;
-			yarr_rotar[m] = '&';
-			free(weak);
+			handle_array_operators[m] = '&';
+			free(transient);
 			n = 0;
 		}
-		if (yarr_namm[m][n] == '|' && yarr_namm[m][n + 1] == '|')
+		if (handle_array_inputs[m][n] == '|' && handle_array_inputs[m][n + 1] == '|')
 		{
 			/* split the line when chars || was found */
-			weak = yarr_namm[m];
-			yarr_namm[m][n] = '\0';
-			yarr_namm[m] = _strclone(yarr_namm[m]);
-			yarr_namm[m + 1] = _strclone(weak + n + 2);
+			transient = handle_array_inputs[m];
+			handle_array_inputs[m][n] = '\0';
+			handle_array_inputs[m] = _strclone(handle_array_inputs[m]);
+			handle_array_inputs[m + 1] = _strclone(transient + n + 2);
 			m++;
-			yarr_rotar[m] = '|';
-			free(weak);
+			handle_array_operators[m] = '|';
+			free(transient);
 			n = 0;
 		}
 	}
