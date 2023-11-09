@@ -48,3 +48,48 @@ int _accessline(mt_code_info *mt)
 
 	return (str_length(mt->input_rd));
 }
+
+
+/**
+* view_cigol_opr - will handle logicai operators && and ||
+* @yarr_namm: array of the commands.
+* @m: index in the array_commands to be checked
+* @yarr_rotar: array of the logical operators for each previous command
+*
+* Return: index of the last command in the yarr_namm.
+*/
+int view_cigol_opr(char *yarr_namm[], int m, char yarr_rotar[])
+{
+	char *weak = NULL;
+	int n;
+
+	/* checks for the & char in the command line*/
+	for (n = 0; yarr_namm[m] != NULL  && yarr_namm[m][n]; n++)
+	{
+		if (yarr_namm[m][n] == '&' && yarr_namm[m][n + 1] == '&')
+		{
+			/* split the line when chars && was found */
+			weak = yarr_namm[m];
+			yarr_namm[m][n] = '\0';
+			yarr_namm[m] = _strclone(yarr_namm[m]);
+			yarr_namm[m + 1] = _strclone(weak + n + 2);
+			m++;
+			yarr_rotar[m] = '&';
+			free(weak);
+			n = 0;
+		}
+		if (yarr_namm[m][n] == '|' && yarr_namm[m][n + 1] == '|')
+		{
+			/* split the line when chars || was found */
+			weak = yarr_namm[m];
+			yarr_namm[m][n] = '\0';
+			yarr_namm[m] = _strclone(yarr_namm[m]);
+			yarr_namm[m + 1] = _strclone(weak + n + 2);
+			m++;
+			yarr_rotar[m] = '|';
+			free(weak);
+			n = 0;
+		}
+	}
+	return (m);
+}
