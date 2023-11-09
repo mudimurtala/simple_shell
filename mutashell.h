@@ -70,7 +70,14 @@ char *_strlink(char *str1, char *str2); /* function to concatenate strings */
 void _revstr(char *str); /* function to reverse the strings */
 
 
-/****************Alias management functions*****************/
+
+/****************Functions that handle memory operations****************/
+void deallocate_data_space(mt_code_info *info);
+void deallocate_pointer_elements(char **array);
+void deallocate_repeated_data(mt_code_info *info);
+
+
+/****************Functions that handle Alias operations*****************/
 int mt_manageAlias(mt_code_info *info, char *alias_name);
 char *mt_findAlias(mt_code_info *info, char *alias_name);
 int mt_positionAlias(char *mtalias_str, mt_code_info *info);
