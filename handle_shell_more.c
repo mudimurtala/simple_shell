@@ -147,15 +147,15 @@ int handle_shell_alias(mt_code_info *info)
 
 	/* the environments are printed if arguments are not found */
 	if (info->passed_items[1] == NULL)
-		return (mt_manage_alias(info, NULL));
+		return (mt_manageAlias(info, NULL));
 
 	while (info->passed_items[++m])
 	{
 	/* printing environment variables if arguments are found */
 		if (eval_chars(info->passed_items[m], "="))
-			mt_position_alias(info->passed_items[m], info);
+			mt_positionAlias(info->passed_items[m], info);
 		else
-			mt_manage_alias(info, info->passed_items[m]);
+			mt_manageAlias(info, info->passed_items[m]);
 	}
 
 	return (0);
