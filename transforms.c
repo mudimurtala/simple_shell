@@ -11,12 +11,12 @@ void resolve_vars(mt_code_info *info);
 void resolve_vars(mt_code_info *info)
 {
 	int m, n;
-<<<<<<< HEAD
-	char phrase[BLOCK_CAPACITY] = {0}, increase[BLOCK_CAPACITY]
-	= {'\0'}, *transient;
-=======
+
+	char phrase[BUFFER_CAPACITY] = {0};
+	char increase[BUFFER_CAPACITY]	= {'\0'}, *transient;
+
 	char phrase[BUFFER_CAPACITY] = {0}, increase[BUFFER_CAPACITY] = {'\0'}, *transient;
->>>>>>> ea996a9 (stage changes)
+
 
 	if (info->prompt_user == NULL)
 		return;
@@ -66,10 +66,9 @@ void resolve_vars(mt_code_info *info)
 void mt_resolveAlias(mt_code_info *info)
 {
 	int m, n, hasEnlarged = 0;
-<<<<<<< HEAD
-	char phrase[BLOCK_CAPACITY] = {0}, increase[BLOCK_CAPACITY]
-	= {'\0'}, *transient;
-=======
+
+	char phrase[BUFFER_CAPACITY] = {0}, increase[BUFFER_CAPACITY]
+		= {'\0'}, *transient;
 	char phrase[BUFFER_CAPACITY] = {0}, increase[BUFFER_CAPACITY] = {'\0'}, *transient;
 
 	if (info->prompt_user == NULL)
