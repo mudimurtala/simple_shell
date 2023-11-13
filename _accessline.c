@@ -12,8 +12,8 @@ int _accessline(mt_code_info *info)
 	static char handle_array_operators[10] = {'\0'};
 	ssize_t data_received, m = 0;
 
-	/* check if doesnot exist more commands in the array */
-	/* and checks the logical operators */
+	/* check to see if more commands exists in the array */
+	/* checks for the logical operators */
 	if (!handle_array_inputs[0] || (handle_array_operators[0] == '&' &&
 				errno != 0) || (handle_array_operators[0] == '|' && errno == 0))
 	{

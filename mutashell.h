@@ -98,5 +98,16 @@ int config_environment_secret(char *secret, char *element, mt_code_info *info);
 /********************matches shell's command with the function****************/
 int handle_shell_list(mt_code_info *info);
 
+/*********************Handles the exit command**************************/
+int handle_shell_exit(mt_code_info *info);
+int handle_shell_help(mt_code_info *info);
+int handle_shell_cd(mt_code_info *info);
+int handle_shell_alias(mt_code_info *info);
+
+/*********************Positions the working directory************************/
+int define_curr_dir(mt_code_info *info, char *createdDir);
+
+
+
 
 #endif
