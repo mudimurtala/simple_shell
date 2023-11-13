@@ -7,7 +7,7 @@
  */
 int _accessline(mt_code_info *info)
 {
-	char storage[BUFFER_SIZE] = {'\0'};
+	char storage[BUFFER_CAPACITY] = {'\0'};
 	static char *handle_array_inputs[10] = {NULL};
 	static char handle_array_operators[10] = {'\0'};
 	ssize_t data_received, m = 0;
@@ -25,7 +25,7 @@ errno != 0) || (handle_array_operators[0] == '|' && errno == 0))
 		}
 
 		/* read from the file descriptor int to buff */
-		data_received = read(info->fd, &storage, BUFFER_SIZE - 1);
+		data_received = read(info->fd, &storage, BUFFER_CAPACITY - 1);
 		if (data_received == 0)
 			return (-1);
 
