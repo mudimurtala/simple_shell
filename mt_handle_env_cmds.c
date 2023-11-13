@@ -17,14 +17,16 @@ int handle_shell_env(mt_code_info *info)
 	else
 	{
 		for (ind = 0; info->parsed_items[1][ind]; ind++)
-		{/* checks if exists a char = */
+		{
+			/* checks if char exists */
 			if (info->parsed_items[1][ind] == '=')
-			{/* checks if exists a var with the same name and change its value*/
-			/* temporally */
+			{
+				/* checks if exists a var with the same name and change its value*/
+				/* temporally */
 				str_dup = _strclone(obtain_environment_secret(env_var_name_buffer, info));
 				if (str_dup != NULL)
-					obtain_environment_secret(env_var_name_buffer,
-					info->parsed_items[1] + ind + 1, info);
+					config_environment_secret(env_var_name_buffer,
+							info->parsed_items[1] + ind + 1, info);
 
 				/* print the environ */
 				display_environment(info);
@@ -35,7 +37,7 @@ int handle_shell_env(mt_code_info *info)
 				}
 				else
 				{/* returns the old value of the var*/
-					obtain_environment_secret(env_var_name_buffer, str_dup, info);
+					config_environment_secret(env_var_name_buffer, str_dup, info);
 					free(str_dup);
 				}
 				return (0);
@@ -58,9 +60,9 @@ int set_env_var(mt_code_info *info)
 {
 	/* validate args */
 	if (info->parsed_items[1] == NULL || info->parsed_items[2] == NULL)
-{
+	{
 		return (0);
-}
+	}
 	if (info->parsed_items[3] != NULL)
 	{
 		errno = E2BIG;
@@ -68,7 +70,7 @@ int set_env_var(mt_code_info *info)
 		return (5);
 	}
 
-	obtain_environment_secret(info->parsed_items[1], info->parsed_items[2], info);
+	config_environment_secret(info->parsed_items[1], info->parsed_items[2], info);
 
 	return (0);
 }
@@ -82,9 +84,9 @@ int unset_env_var(mt_code_info *info)
 {
 	/* validate args */
 	if (info->parsed_items[1] == NULL)
-{
+	{
 		return (0);
-}
+	}
 	if (info->parsed_items[2] != NULL)
 	{
 		errno = E2BIG;

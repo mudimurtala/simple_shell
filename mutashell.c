@@ -11,7 +11,7 @@
 int main(int argc, char *argv[], char *env[])
 {
 	mt_code_info data_struct = {NULL}, *info = &data_struct;
-	char *userQuery = "";
+	char *userQuery = "#mutashell$ ";
 
 	load_data(info, argc, argv, env);
 
@@ -46,7 +46,7 @@ void terminate_gracefully(int opr IGNORED_PARAM)
  * @env: this is the environment of the running program
  * @argc: represents what is received from the user
  */
-void load_data(mt_code_info *info, int argc, char *argv[], char **env)
+void load_data(mt_code_info *info, int argc, char *argv[], char **environ)
 {
 	int m = 0;
 
