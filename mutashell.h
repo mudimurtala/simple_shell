@@ -108,6 +108,35 @@ int handle_shell_alias(mt_code_info *info);
 int define_curr_dir(mt_code_info *info, char *createdDir);
 
 
+int _display(char *content);
+int _displayerror(char *content);
+int showError(int errorcode, mt_code_info *info);
+
+int mt_execute_action(mt_code_info *info);
+
+
+int handle_shell_env(mt_code_info *info);
+int set_env_var(mt_code_info *info);
+int unset_env_var(mt_code_info *info);
+
+
+void integerToString(long numeral, char *content, int bottom);
+int eval_chars(char *content, char *code);
+int _atoi(char *z);
+
+
+char *_strsplit(char *phrase, char *divider);
+
+void segment(mt_code_info *info);
+
+int validate_file(char *absolute_file_path);
+int locate_prog(mt_code_info *info);
+char **breakdownPath(mt_code_info *info);
+
+
+void resolve_vars(mt_code_info *data);
+int append_to_buffer(char *cache, char *joinStrings);
+void mt_resolveAlias(mt_code_info *info);
 
 
 #endif
