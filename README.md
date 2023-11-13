@@ -1,4 +1,7 @@
 
+Here's the link to our Simple Shell's flowchart
+https://drive.google.com/file/d/1oUJHumD20f8ibXyAJPwYxrBE6i1PcQez/view?usp=drive_link
+
 0x16. C - Simple Shell
 C
 Group project
