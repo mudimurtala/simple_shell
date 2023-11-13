@@ -1,4 +1,6 @@
 #include "mutashell.h"
+
+char *_strlink(char *str1, char *str2);
 /**
  * _strlen - length of the string
  * @str: string to be counted
@@ -9,6 +11,7 @@
 int _strlen(char *str)
 {
 	int str_count;
+
 	if (str == NULL)
 	{
 		return (0);
@@ -68,6 +71,7 @@ char *_strclone(char *str)
 int _strcomp(char *str1, char *str2, int x)
 {
 	int loops, s1, s2;
+
 	s1 = _strlen(str1),  s2 = _strlen(str2);
 
 	if (str1 == NULL && str2 == NULL)
@@ -112,6 +116,7 @@ char *_strlink(char *str1, char *str2)
 {
 	char *linkedS;
 	int len1, len2;
+
 	len1 = 0, len2 = 0;
 
 	if (str1 == NULL)
@@ -156,7 +161,7 @@ char *_strlink(char *str1, char *str2)
 /**
  * _revstr - reverses a string.
  *
- * @string: string to be reversed.
+ * @str: string to be reversed.
  * Return: Nothing.
  */
 void _revstr(char *str)

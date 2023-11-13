@@ -54,7 +54,7 @@ int locate_prog(mt_code_info *info)
 
 /**
  * breakdownPath - split or tokenize the path in directories
- * @info: points to the data stored 
+ * @info: points to the data stored
  * Return: it returns an array
  */
 

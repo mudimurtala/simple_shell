@@ -3,7 +3,7 @@
 /**
  * mt_manageAlias - function to insert, delete or print aliases
  * @info: struct for the program's info
- * @name: name of the alias to be displayed
+ * @alias_name: name of the alias to be displayed
  * Return: 0 upon success, otherwise user declared number
  */
 int mt_manageAlias(mt_code_info *info, char *alias_name)
@@ -16,8 +16,8 @@ int mt_manageAlias(mt_code_info *info, char *alias_name)
 		mtalias_len = _strlen(alias_name);
 		for (ind = 0; info->mt_listAlias[ind]; ind++)
 		{
-			if (!alias_name || (_strcomp(info->mt_listAlias[ind], alias_name, mtalias_len)
-						&&	info->mt_listAlias[ind][mtalias_len] == '='))
+			if (!alias_name || (_strcomp(info->mt_listAlias[ind], alias_name,
+			mtalias_len) && info->mt_listAlias[ind][mtalias_len] == '='))
 			{
 				for (ind2 = 0; info->mt_listAlias[ind][ind2]; ind2++)
 				{
@@ -38,9 +38,9 @@ int mt_manageAlias(mt_code_info *info, char *alias_name)
 }
 
 /**
- * find_alias - add, remove or show aliases
- * @data: struct for the program's data
- * @name: name of the requested alias.
+ * mt_findAlias - add, remove or show aliases
+ * @info: struct for the program's data
+ * @alias_name: name of the requested alias.
  * Return: zero if sucess, or other number if its declared in the arguments
  */
 char *mt_findAlias(mt_code_info *info, char *alias_name)
@@ -108,7 +108,7 @@ int mt_positionAlias(char *mtalias_str, mt_code_info *info)
 	if (var)
 	{/* if the alias already exist */
 		append_to_buffer(buff, "=");
-		append-to_buffer(buff, var);
+		append_to_buffer(buff, var);
 		info->mt_listAlias[ind1] = _strclone(buff);
 	}
 	else /* if the alias does not exist */

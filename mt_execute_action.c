@@ -1,4 +1,7 @@
 #include "mutashell.h"
+
+
+int mt_execute_action(mt_code_info *info);
 /**
  * mt_execute_action - a function for executing commands.
  * @info: this points to the data the program contains.

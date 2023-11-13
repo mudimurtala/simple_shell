@@ -40,4 +40,4 @@ char *_strsplit(char *phrase, char *divider)
 		}
 	}
 	return (newWord);
-}		
+}

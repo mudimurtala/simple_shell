@@ -23,7 +23,8 @@ int handle_shell_env(mt_code_info *info)
 			/* temporally */
 				str_dup = _strclone(obtain_environment_secret(env_var_name_buffer, info));
 				if (str_dup != NULL)
-					obtain_environment_secret(env_var_name_buffer, info->parsed_items[1] + ind + 1, info);
+					obtain_environment_secret(env_var_name_buffer,
+					info->parsed_items[1] + ind + 1, info);
 
 				/* print the environ */
 				display_environment(info);

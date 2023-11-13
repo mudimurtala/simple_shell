@@ -41,7 +41,7 @@ void terminate_gracefully(int opr IGNORED_PARAM)
 
 /**
  * load_data - load and initialize the data of the program
- * @info: this points to the structure 
+ * @info: this points to the structure
  * @argv: represents the parameter passed
  * @env: this is the environment of the running program
  * @argc: represents what is received from the user
@@ -112,7 +112,7 @@ void persevere(char *userQuery, mt_code_info *info)
 			resolve_vars(info);
 			segment(info);
 			if (info->parsed_items[0])
-			{ 
+			{
 			/* if a text is given to prompt, execute */
 				error_code = mt_execute_action(info);
 				if (error_code != 0)

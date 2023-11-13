@@ -1,15 +1,18 @@
 #include "mutashell.h"
 
+void resolve_vars(mt_code_info *info);
+
 /**
  * resolve_vars - this function is tasked with expanding vars
  * @info: represents a pointer pointing to the stored info.
  *
  * Return: errno is set, and void is returned
  */
-void resolve_vars(mt_code_info *data)
+void resolve_vars(mt_code_info *info)
 {
 	int m, n;
-	char phrase[BLOCK_CAPACITY] = {0}, increase[BLOCK_CAPACITY] = {'\0'}, *transient;
+	char phrase[BLOCK_CAPACITY] = {0}, increase[BLOCK_CAPACITY]
+	= {'\0'}, *transient;
 
 	if (info->prompt_user == NULL)
 		return;
@@ -59,7 +62,8 @@ void resolve_vars(mt_code_info *data)
 void mt_resolveAlias(mt_code_info *info)
 {
 	int m, n, hasEnlarged = 0;
-	char phrase[BLOCK_CAPACITY] = {0}, increase[BLOCK_CAPACITY] = {'\0'}, *transient;
+	char phrase[BLOCK_CAPACITY] = {0}, increase[BLOCK_CAPACITY]
+	= {'\0'}, *transient;
 
 	if (info->prompt_user == NULL)
 		return;
