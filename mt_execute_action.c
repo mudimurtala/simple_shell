@@ -10,7 +10,7 @@ int mt_execute_action(mt_code_info *info)
 	pid_t processID;
 
 	/* to check if the program is present in built-ins */
-	response = builtins_list(info);
+	response = handle_shell_list(info);
 	if (response != -1) /* if built-ins stores the program being searched for */
 		return (response);
 

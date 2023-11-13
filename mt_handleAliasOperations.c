@@ -26,10 +26,10 @@ int mt_manageAlias(mt_code_info *info, char *alias_name)
 						break;
 				}
 				buff[ind2 + 1] = '\0';
-				buff_add(buff, "'");
-				buff_add(buff, info->mt_listAlias[ind] + ind2 + 1);
-				buff_add(buff, "'\n");
-				_print(buff);
+				append_to_buffer(buff, "'");
+				append_to_buffer(buff, info->mt_listAlias[ind] + ind2 + 1);
+				append_to_buffer(buff, "'\n");
+				_display(buff);
 			}
 		}
 	}
@@ -107,8 +107,8 @@ int mt_positionAlias(char *mtalias_str, mt_code_info *info)
 	/* add the alias */
 	if (var)
 	{/* if the alias already exist */
-		buff_add(buff, "=");
-		buff_add(buff, var);
+		append_to_buffer(buff, "=");
+		append-to_buffer(buff, var);
 		info->mt_listAlias[ind1] = _strclone(buff);
 	}
 	else /* if the alias does not exist */
