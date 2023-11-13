@@ -85,7 +85,7 @@ int clear_environment_secret(char *secret, mt_code_info *info)
 	int m, secret_length = 0;
 
 	/* proof whether the arguments are true */
-	                                                                                                                                                                                                                                                                                                                             if (secret == NULL || info->environ == NULL)
+	if (secret == NULL || info->environ == NULL)
 		return (0);
 
 	/* grtting the length of the needed variable */
@@ -124,7 +124,7 @@ void disply_environment(mt_code_info *info)
 
 	for (n = 0; info->environ[n]; n++)
 	{
-		_print(info->environ[n]);
-		_print("\n");
+		_display(info->environ[n]);
+		_display("\n");
 	}
 }

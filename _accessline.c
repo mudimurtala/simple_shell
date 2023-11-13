@@ -34,7 +34,7 @@ int _accessline(mt_code_info *info)
 		do {
 			handle_array_inputs[m] = _strclone(_strtok(m ? NULL : storage, "\n;"));
 			/*checks and split for && and || operators*/
-			m = check_logic_ops(handle_array_inputs, m, handle_array_operators);
+			m = inspect_logical_con(handle_array_inputs, m, handle_array_operators);
 		} while (handle_array_inputs[m++]);
 	}
 
@@ -51,14 +51,14 @@ int _accessline(mt_code_info *info)
 
 
 /**
-* check_logic_ops - will handle logicai operators && and ||
+* inspect_logical_con - will handle logical operators && and ||
 * @handle_array_inputs: array of the commands.
 * @m: index in the array_commands to be checked
 * @handle_array_operators: array of the logical operators for each previous command
 *
 * Return: index of the last command in the handle_array_inputs.
 */
-int check_logic_ops(char *handle_array_inputs[], int m, char handle_array_operators[])
+int inspect_logical_con(char *handle_array_inputs[], int m, char handle_array_operators[])
 {
 	char *transient = NULL;
 	int n;
