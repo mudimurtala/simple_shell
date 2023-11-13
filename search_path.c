@@ -20,9 +20,9 @@ int locate_prog(mt_code_info *info)
 	if (info->command_tag[0] == '/' || info->command_tag[0] == '.')
 		return (validate_file(info->command_tag));
 
-	free(info->passed_items[0]);
-	info->passed_items[0] = _strlink(_strclone("/"), info->command_tag);
-	if (!info->passed_items[0])
+	free(info->parsed_items[0]);
+	info->parsed_items[0] = _strlink(_strclone("/"), info->command_tag);
+	if (!info->parsed_items[0])
 		return (2);
 
 	dirCollections = breakdownPath(info);/* look for it in the PATH environment */
@@ -34,20 +34,20 @@ int locate_prog(mt_code_info *info)
 	}
 	for (m = 0; dirCollections[m]; m++)
 	{/* join the name of the function to the PATH */
-		dirCollections[m] = _strlink(dirCollections[m], info->passed_items[0]);
+		dirCollections[m] = _strlink(dirCollections[m], info->parsed_items[0]);
 		outcome_status = validate_file(dirCollections[m]);
 		if (outcome_status == 0 || outcome_status == 126)
 		{
 		/* the file was found, is not a directory and has execute permisions*/
 			errno = 0;
-			free(info->passed_items[0]);
-			info->passed_items[0] = _strclone(dirCollections[m]);
+			free(info->parsed_items[0]);
+			info->parsed_items[0] = _strclone(dirCollections[m]);
 			cleanup_pointer_array(dirCollections);
 			return (outcome_status);
 		}
 	}
-	free(info->passed_items[0]);
-	info->passed_items[0] = NULL;
+	free(info->parsed_items[0]);
+	info->parsed_items[0] = NULL;
 	cleanup_pointer_array(dirCollections);
 	return (outcome_status);
 }
@@ -62,7 +62,7 @@ char **breakdownPath(mt_code_info *info)
 {
 	int m = 0;
 	int dirCount = 2;
-	char **passed_items = NULL;
+	char **parsed_items = NULL;
 	char *PATH;
 
 	/* obtaining the value of the PATH variable */
@@ -82,19 +82,19 @@ char **breakdownPath(mt_code_info *info)
 	}
 
 	/* array of pointers should be reserved a space  */
-	passed_items = malloc(sizeof(char *) * dirCount);
+	parsed_items = malloc(sizeof(char *) * dirCount);
 
 	/*duplicate, split and tokenize the parts of the PATH*/
 	m = 0;
-	passed_items[m] = _strclone(_strsplit(PATH, ":"));
-	while (passed_items[m++])
+	parsed_items[m] = _strclone(_strsplit(PATH, ":"));
+	while (parsed_items[m++])
 	{
-		passed_items[m] = _strclone(_strsplit(NULL, ":"));
+		parsed_items[m] = _strclone(_strsplit(NULL, ":"));
 	}
 
 	free(PATH);
 	PATH = NULL;
-	return (passed_items);
+	return (parsed_items);
 
 }
 
