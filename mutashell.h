@@ -139,4 +139,11 @@ int append_to_buffer(char *cache, char *joinStrings);
 void mt_resolveAlias(mt_code_info *info);
 
 
+void persevere(char *userQuery, mt_code_info *info);
+void load_data(mt_code_info *info, int argc, char *argv[], char **env);
+void terminate_gracefully(int opr IGNORED_PARAM);
+
+
+
+
 #endif

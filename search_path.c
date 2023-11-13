@@ -1,7 +1,5 @@
 #include "mutashell.h"
 
-int validate_file(char *absolute_file_path);
-
 /**
  * locate_prog - search the PATH environment variable for a program
  * @info: this points to the data or info stored

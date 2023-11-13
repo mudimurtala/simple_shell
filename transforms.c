@@ -11,8 +11,12 @@ void resolve_vars(mt_code_info *info);
 void resolve_vars(mt_code_info *info)
 {
 	int m, n;
+<<<<<<< HEAD
 	char phrase[BLOCK_CAPACITY] = {0}, increase[BLOCK_CAPACITY]
 	= {'\0'}, *transient;
+=======
+	char phrase[BUFFER_CAPACITY] = {0}, increase[BUFFER_CAPACITY] = {'\0'}, *transient;
+>>>>>>> ea996a9 (stage changes)
 
 	if (info->prompt_user == NULL)
 		return;
