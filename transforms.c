@@ -15,9 +15,6 @@ void resolve_vars(mt_code_info *info)
 	char phrase[BUFFER_CAPACITY] = {0};
 	char increase[BUFFER_CAPACITY]	= {'\0'}, *transient;
 
-	char phrase[BUFFER_CAPACITY] = {0}, increase[BUFFER_CAPACITY] = {'\0'}, *transient;
-
-
 	if (info->prompt_user == NULL)
 		return;
 	append_to_buffer(phrase, info->prompt_user);
@@ -67,9 +64,8 @@ void mt_resolveAlias(mt_code_info *info)
 {
 	int m, n, hasEnlarged = 0;
 
-	char phrase[BUFFER_CAPACITY] = {0}, increase[BUFFER_CAPACITY]
-		= {'\0'}, *transient;
-	char phrase[BUFFER_CAPACITY] = {0}, increase[BUFFER_CAPACITY] = {'\0'}, *transient;
+	char phrase[BUFFER_CAPACITY] = {0};
+	char increase[BUFFER_CAPACITY] = {'\0'}, *transient;
 
 	if (info->prompt_user == NULL)
 		return;
@@ -101,6 +97,7 @@ void mt_resolveAlias(mt_code_info *info)
 		info->prompt_user = _strclone(phrase);
 	}
 }
+
 
 /**
  * append_to_buffer - the function adds a string to the buffer at the end
