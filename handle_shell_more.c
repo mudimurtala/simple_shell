@@ -9,18 +9,18 @@ int handle_shell_exit(mt_code_info *info)
 {
 	int m;
 
-	if (info->passed_items[1] != NULL)
+	if (info->parsed_items[1] != NULL)
 	{
 	/*if exists arg for exit, check if is a number*/
-		for (m = 0; info->passed_items[1][m]; m++)
-			if ((info->passed_items[1][m] < '0' || info->passed_items[1][m] > '9')
-				&& info->passed_items[1][m] != '+')
+		for (m = 0; info->parsed_items[1][m]; m++)
+			if ((info->parsed_items[1][m] < '0' || info->parsed_items[1][m] > '9')
+				&& info->parsed_items[1][m] != '+')
 			{
 			/* but if it is not a number, this happens */
 				errno = 2;
 				return (2);
 			}
-		errno = _atoi(info->passed_items[1]);
+		errno = _atoi(info->parsed_items[1]);
 	}
 	deallocate_data_space(info);
 	exit(errno);
@@ -37,9 +37,9 @@ int handle_shell_cd(mt_code_info *info)
 	char formerDir[128] = {0};
 	int error_code = 0;
 
-	if (info->passed_items[1])
+	if (info->parsed_items[1])
 	{
-		if (_strcomp(info->passed_items[1], "-", 0))
+		if (_strcomp(info->parsed_items[1], "-", 0))
 		{
 			dirFormer = obtain_environment_secret("OLDPWD", info);
 			if (dirFormer)
@@ -51,7 +51,7 @@ int handle_shell_cd(mt_code_info *info)
 		}
 		else
 		{
-			return (define_curr_dir(info, info->passed_items[1]));
+			return (define_curr_dir(info, info->parsed_items[1]));
 		}
 	}
 	else
@@ -101,30 +101,30 @@ int handle_shell_help(mt_code_info *info)
 	int m, textLength = 0;
 	char *msgList[6] = {NULL};
 
-	msgList[0] = HELP_MSG;
+	msgList[0] = INFO_MESSAGE;
 
 	/* checking and proofing the arguments */
-	if (info->passed_items[1] == NULL)
+	if (info->parsed_items[1] == NULL)
 	{
 		_display(msgList[0] + 6);
 		return (1);
 	}
-	if (info->passed_items[2] != NULL)
+	if (info->parsed_items[2] != NULL)
 	{
 		errno = E2BIG;
 		perror(info->command_tag);
 		return (5);
 	}
-	msgList[1] = HELP_EXIT_MSG;
-	msgList[2] = HELP_ENV_MSG;
-	msgList[3] = HELP_SETENV_MSG;
-	msgList[4] = HELP_UNSETENV_MSG;
-	msgList[5] = HELP_CD_MSG;
+	msgList[1] = EXIT_INFO_MESSAGE;
+	msgList[2] = ENV_INFO_MESSAGE;
+	msgList[3] = SETENV_INFO_MESSAGE;
+	msgList[4] = UNSETENV_INFO_MESSAGE;
+	msgList[5] = CD_INFO_MESSAGE;
 
 	for (m = 0; msgList[m]; m++)
 	{
-		textLength = _strlen(info->passed_items[1]);
-		if (_strcomp(info->passed_items[1], msgList[m], textLength))
+		textLength = _strlen(info->parsed_items[1]);
+		if (_strcomp(info->parsed_items[1], msgList[m], textLength))
 		{
 			_display(msgList[m] + textLength + 1);
 			return (1);
@@ -146,16 +146,16 @@ int handle_shell_alias(mt_code_info *info)
 	int m = 0;
 
 	/* the environments are printed if arguments are not found */
-	if (info->passed_items[1] == NULL)
+	if (info->parsed_items[1] == NULL)
 		return (mt_manageAlias(info, NULL));
 
-	while (info->passed_items[++m])
+	while (info->parsed_items[++m])
 	{
 	/* printing environment variables if arguments are found */
-		if (eval_chars(info->passed_items[m], "="))
-			mt_positionAlias(info->passed_items[m], info);
+		if (eval_chars(info->parsed_items[m], "="))
+			mt_positionAlias(info->parsed_items[m], info);
 		else
-			mt_manageAlias(info, info->passed_items[m]);
+			mt_manageAlias(info, info->parsed_items[m]);
 	}
 
 	return (0);
