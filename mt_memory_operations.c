@@ -1,8 +1,8 @@
 #include "mutashell.h"
 
 /**
- * free_all_data - free all field of the data
- * @data: struct of the program's data
+ * deallocate_data_space - free all field of the data
+ * @info: struct of the program's data
  * Return: Nothing
  */
 void deallocate_data_space(mt_code_info *info)
@@ -20,10 +20,10 @@ void deallocate_data_space(mt_code_info *info)
 
 
 /**
- * free_array_of_pointers - frees each pointer of an array of pointers and the
+ * deallocate_pointer_elements - frees each pointer of an array of pointers and the
  * array too
  * @array: array of pointers
- * Return: nothing
+ * Return: it returns void
  */
 void deallocate_pointer_elements(char **array)
 {
@@ -46,8 +46,8 @@ void deallocate_pointer_elements(char **array)
 
 
 /**
- * free_recurrent_data - free the fields needed each loop
- * @data: struct of the program's data
+ * deallocate)repeated_data - free the fields needed each loop
+ * @info: struct of the program's data
  * Return: Nothing
  */
 void deallocate_repeated_data(mt_code_info *info)

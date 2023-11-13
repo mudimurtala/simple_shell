@@ -2,7 +2,8 @@
 /**
  * _strsplit - a function for seperating strings
  * @phrase: points to whatever is received in getline
- * @divider: divides the array of string into smaller units
+ * @divider: divides the array of
+ * string into smaller units
  * Return: whatever is created is the return
 */
 char *_strsplit(char *phrase, char *divider)

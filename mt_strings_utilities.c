@@ -1,12 +1,12 @@
 #include "mutashell.h"
 /**
- * mutaStrlen- length of the string
+ * _strlen - length of the string
  * @str: string to be counted
  *
  * Return: str_count upon success
  */
 
-int mutaStrlen(char *str)
+int _strlen(char *str)
 {
 	int str_count;
 	if (str == NULL)
@@ -24,12 +24,12 @@ int mutaStrlen(char *str)
 
 
 /**
- * mutaStrclone - creates a duplicate of a string
+ * _strclone - creates a duplicate of a string
  * @str: String to be duplicated
  *
  * Return: array of duplicated string
  */
-char *mutaStrclone(char *str)
+char *_strclone(char *str)
 {
 	char *clonedStr;
 	int len, index;
@@ -39,7 +39,7 @@ char *mutaStrclone(char *str)
 		return (NULL);
 	}
 
-	len = mutaStrlen(str) + 1;
+	len = _strlen(str) + 1;
 
 	clonedStr = malloc(sizeof(char) * len);
 
@@ -58,17 +58,17 @@ char *mutaStrclone(char *str)
 }
 
 /**
- * mudettaStrcomp - Function that compares two strings
+ * _strcomp - Function that compares two strings
  * @str1: string to be compared with.
  * @str2: String to be compared to.
  * @x: number of characters to be compared, 0 if infinite
  *
  * Return: 1 if the strings are equals, 0 if the strings are different
  */
-int mutaStrcomp(char *str1, char *str2, int x)
+int _strcomp(char *str1, char *str2, int x)
 {
 	int loops, s1, s2;
-	s1 = mutaStrlen(str1),  s2 = mutaStrlen(str2);
+	s1 = _strlen(str1),  s2 = _strlen(str2);
 
 	if (str1 == NULL && str2 == NULL)
 	{
@@ -102,13 +102,13 @@ int mutaStrcomp(char *str1, char *str2, int x)
 }
 
 /**
- * mutaStrlink - joins two strings together.
+ * _strlink - joins two strings together.
  * @str1: String to be joined with.
  * @str2: String to be joined to.
  *
  * Return: an array of the joined string.
  */
-char *mutaStrlink(char *str1, char *str2)
+char *_strlink(char *str1, char *str2)
 {
 	char *linkedS;
 	int len1, len2;
@@ -118,13 +118,13 @@ char *mutaStrlink(char *str1, char *str2)
 	{
 		str1 = "";
 	}
-	len1 = mutaStrlen(str1);
+	len1 = _strlen(str1);
 
 	if (str2 == NULL)
 	{
 		str2 = "";
 	}
-	len2 = mutaStrlen(str2);
+	len2 = _strlen(str2);
 
 	linkedS = malloc(sizeof(char) * (len1 + len2 + 1));
 	if (linkedS == NULL)
@@ -154,15 +154,15 @@ char *mutaStrlink(char *str1, char *str2)
 
 
 /**
- * mudettaRev_str - reverses a string.
+ * _revstr - reverses a string.
  *
  * @string: string to be reversed.
  * Return: Nothing.
  */
-void mutaRev_str(char *str)
+void _revstr(char *str)
 {
 
-	int ind, len = mutaStrlen(str) - 1;
+	int ind, len = _strlen(str) - 1;
 	char temp;
 ind = 0;
 

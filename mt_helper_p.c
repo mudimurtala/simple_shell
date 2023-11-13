@@ -4,7 +4,8 @@
  * _display - display an array of chars to the stdio
  * @content: this points to the string
  * Return: it returns the number of the bytes typed
- * (-1) is returned on error and errno is set appropriately.
+ * (-1) is returned on error and
+ * errno is set appropriately.
  */
 int _display(char *content)
 {
@@ -14,7 +15,8 @@ int _display(char *content)
  * _displayerror - a function that prints to the stamdaed error
  * @content: this points to the string typed
  * Return: it returns the number of bytes
- * but if error (-1) is returned and errno is set appropriately.
+ * but if error (-1) is returned
+ * and errno is set appropriately.
  */
 int _displayerror(char *content)
 {
