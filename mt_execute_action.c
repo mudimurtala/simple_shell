@@ -18,7 +18,7 @@ int mt_execute_action(mt_code_info *info)
 		return (response);
 
 	/* checking the system for the program */
-	response = lookup_program(info);
+	response = locate_prog(info);
 	if (response)
 	{
 	/* if the program is absent in the file system */

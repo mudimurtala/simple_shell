@@ -43,7 +43,7 @@ typedef struct elements
 	char *code_tag;
 	char *prompt_user;
 	char *command_tag;
-	int cmdExec_count;
+	int command_count;
 	int fd;
 	char **parsed_items;
 	char **environ;

@@ -116,7 +116,7 @@ void persevere(char *userQuery, mt_code_info *info)
 			/* if a text is given to prompt, execute */
 				error_code = mt_execute_action(info);
 				if (error_code != 0)
-					_showError(error_code, info);
+					showError(error_code, info);
 			}
 			deallocate_repeated_data(info);
 		}

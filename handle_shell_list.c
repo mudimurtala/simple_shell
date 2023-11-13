@@ -9,7 +9,7 @@
 int handle_shell_list(mt_code_info *info)
 {
 	int navigator;
-	internals commands[] = {
+	mt_internalCommands commands[] = {
 		{"exit", handle_shell_exit},
 		{"help", handle_shell_help},
 		{"cd", handle_shell_cd},
@@ -20,17 +20,17 @@ int handle_shell_list(mt_code_info *info)
 		{NULL, NULL}
 	};
 
-/* navigating the structure to access it's contents*/
+	/* navigating the structure to access it's contents*/
 	for (navigator = 0; commands[navigator].mt_internalCommand
-!= NULL; navigator++)
-/* comparing what is typed with the built_in */
+			!= NULL; navigator++)
+		/* comparing what is typed with the built_in */
 		if (_strcomp(commands[navigator].mt_internalCommand, info->command_tag, 0))
 		{
-/* here, the function is executed, and it's return value is returned*/
+			/* here, the function is executed, and it's return value is returned*/
 			return (commands[navigator].fn(info));
 		}
 
-/* Return (-1) if the typed command did not match any builtin */
-	}
-	return (-1);
+	/* Return (-1) if the typed command did not match any builtin */
+
+return (-1);
 }
