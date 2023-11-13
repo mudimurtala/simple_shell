@@ -33,7 +33,7 @@ char *obtain_environment_secret(char *secret, mt_code_info *info)
  * config_environment_secret - write over the value that an environment holds,
  * or another one created if not exist.
  * @secret: represents the new variable
- * @element: another value 
+ * @element: another value
  * @info: represents the data the program stores
  * Return: (0) for success, 1 for NULL and 2 for error
  */
