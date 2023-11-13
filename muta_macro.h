@@ -9,7 +9,7 @@
 
 
 /* size of the memory preserved for _getline */
-#define BLOCK_CAPACITY 1024
+#define BUFFER_CAPACITY 1024
 
 /************* Built-in command under HELP **************/
 
