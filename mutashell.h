@@ -83,5 +83,20 @@ char *mt_findAlias(mt_code_info *info, char *alias_name);
 int mt_positionAlias(char *mtalias_str, mt_code_info *info);
 
 
+/****************Getline function**********************************/
+int _accessline(mt_code_info *info);
+int inspect_logical_con(char *handle_array_inputs[], int m, char     handle_array_operators[]);
+
+
+/*******************Handles shell environment**************************/
+char *obtain_environment_secret(char *secret, mt_code_info *info);
+void display_environment(mt_code_info *info);
+int clear_environment_secret(char *secret, mt_code_info *info);
+int config_environment_secret(char *secret, char *element, mt_code_info *info);
+
+
+/********************matches shell's command with the function****************/
+int handle_shell_list(mt_code_info *info);
+
 
 #endif

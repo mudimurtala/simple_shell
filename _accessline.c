@@ -2,7 +2,7 @@
 
 /**
  * _accessline - a function that reads users input
- * @mt: the stuct that stores data
+ * @info: the stuct that stores the data
  * Return: number of bytes
  */
 int _accessline(mt_code_info *info)
@@ -14,8 +14,8 @@ int _accessline(mt_code_info *info)
 
 	/* check if doesnot exist more commands in the array */
 	/* and checks the logical operators */
-	if (!handle_array_inputs[0] || (handle_array_operators[0] == '&' && errno != 0) ||
-		(handle_array_operators[0] == '|' && errno == 0))
+	if (!handle_array_inputs[0] || (handle_array_operators[0] == '&' &&
+errno != 0) || (handle_array_operators[0] == '|' && errno == 0))
 	{
 		/*free the memory allocated in the array if it exists */
 		for (m = 0; handle_array_inputs[m]; m++)
@@ -32,21 +32,21 @@ int _accessline(mt_code_info *info)
 		/* split lines for \n or ; */
 		m = 0;
 		do {
-			handle_array_inputs[m] = _strclone(_strtok(m ? NULL : storage, "\n;"));
+			handle_array_inputs[m] = _strclone(_strsplit(m ? NULL : storage, "\n;"));
 			/*checks and split for && and || operators*/
 			m = inspect_logical_con(handle_array_inputs, m, handle_array_operators);
 		} while (handle_array_inputs[m++]);
 	}
 
 	/*obtains the next command (command 0) and remove it for the array*/
-	info->promp_user = handle_array_inputs[0];
+	info->prompt_user = handle_array_inputs[0];
 	for (m = 0; handle_array_inputs[m]; m++)
 	{
 		handle_array_inputs[m] = handle_array_inputs[m + 1];
 		handle_array_operators[m] = handle_array_operators[m + 1];
 	}
 
-	return (_strlen(info->promp_user));
+	return (_strlen(info->prompt_user));
 }
 
 
@@ -54,11 +54,13 @@ int _accessline(mt_code_info *info)
 * inspect_logical_con - will handle logical operators && and ||
 * @handle_array_inputs: array of the commands.
 * @m: index in the array_commands to be checked
-* @handle_array_operators: array of the logical operators for each previous command
+* @handle_array_operators: handle the array of the
+* logical operators for each previous command
 *
 * Return: index of the last command in the handle_array_inputs.
 */
-int inspect_logical_con(char *handle_array_inputs[], int m, char handle_array_operators[])
+int inspect_logical_con(char *handle_array_inputs[],
+int m, char handle_array_operators[])
 {
 	char *transient = NULL;
 	int n;

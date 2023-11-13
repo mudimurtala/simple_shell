@@ -9,7 +9,7 @@
 int handle_shell_list(mt_code_info *info)
 {
 	int navigator;
-	builtins options[] = {
+	internals commands[] = {
 		{"exit", handle_shell_exit},
 		{"help", handle_shell_help},
 		{"cd", handle_shell_cd},
@@ -21,13 +21,13 @@ int handle_shell_list(mt_code_info *info)
 	};
 
 /* navigating the structure to access it's contents*/
-	for (navigator = 0; options[navigator].mt_internalCommand != NULL; navigator++)
+	for (navigator = 0; commands[navigator].mt_internalCommand != NULL; navigator++)
 	{
 /*checking it the command typed is the same with the available shell built-ins */
-		if (_strcomp(options[navigator].mt_internalCommand, info->command_tag, 0))
+		if (_strcomp(commands[navigator].mt_internalCommand, info->command_tag, 0))
 		{
 /* here, the function is executed, and it"s return value is returned*/
-			return (options[navigator].fn(info));
+			return (commands[navigator].fn(info));
 		}
 /* (-1) is returned if the typed command did not match any available built-in */
 	}

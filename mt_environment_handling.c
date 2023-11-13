@@ -1,10 +1,10 @@
 #include "mutashell.h"
 
 /**
- * obtain_environment_secret - obtain what is inside an environment variable
+ * obtain_environment_secret - gets the environment variable
  * @secret: represent the environment value
  * @info: represents the data of the program
- * Return: it returns a pointer
+ * Return: returns a null pointer
  */
 char *obtain_environment_secret(char *secret, mt_code_info *info)
 {
@@ -118,7 +118,7 @@ int clear_environment_secret(char *secret, mt_code_info *info)
  * @info: represents the data the program stores
  * Return: returns a void
  */
-void disply_environment(mt_code_info *info)
+void display_environment(mt_code_info *info)
 {
 	int n;
 
