@@ -46,9 +46,9 @@ void resolve_vars(mt_code_info *info)
 			transient ? append_to_buffer(phrase, transient) : 1;
 			append_to_buffer(phrase, increase);
 		}
-	if (!_strcomp(info->promt_user, phrase, 0))
+	if (!_strcomp(info->prompt_user, phrase, 0))
 	{
-		free(info->promt_user);
+		free(info->prompt_user);
 		info->prompt_user = _strclone(phrase);
 	}
 }
@@ -62,8 +62,11 @@ void resolve_vars(mt_code_info *info)
 void mt_resolveAlias(mt_code_info *info)
 {
 	int m, n, hasEnlarged = 0;
+<<<<<<< HEAD
 	char phrase[BLOCK_CAPACITY] = {0}, increase[BLOCK_CAPACITY]
 	= {'\0'}, *transient;
+=======
+	char phrase[BUFFER_CAPACITY] = {0}, increase[BUFFER_CAPACITY] = {'\0'}, *transient;
 
 	if (info->prompt_user == NULL)
 		return;
