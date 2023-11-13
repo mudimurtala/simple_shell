@@ -3,7 +3,7 @@
 /**
  * handle_shell_list - executing a built-in command after searching for it
  * @info: represents the data the program stores
- * Return: if there is a match it returns what is executed, else 
+ * Return: if there is a match it returns what is executed, else
  * returns -1.
  **/
 int handle_shell_list(mt_code_info *info)
@@ -21,15 +21,16 @@ int handle_shell_list(mt_code_info *info)
 	};
 
 /* navigating the structure to access it's contents*/
-	for (navigator = 0; commands[navigator].mt_internalCommand != NULL; navigator++)
-	{
-/*checking it the command typed is the same with the available shell built-ins */
+	for (navigator = 0; commands[navigator].mt_internalCommand
+!= NULL; navigator++)
+/* comparing what is typed with the built_in */
 		if (_strcomp(commands[navigator].mt_internalCommand, info->command_tag, 0))
 		{
-/* here, the function is executed, and it"s return value is returned*/
+/* here, the function is executed, and it's return value is returned*/
 			return (commands[navigator].fn(info));
 		}
-/* (-1) is returned if the typed command did not match any available built-in */
+
+/* Return (-1) if the typed command did not match any builtin */
 	}
 	return (-1);
 }

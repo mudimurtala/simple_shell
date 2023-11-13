@@ -33,7 +33,8 @@ int handle_shell_exit(mt_code_info *info)
  */
 int handle_shell_cd(mt_code_info *info)
 {
-	char *personalDir = obtain_environment_secret("HOME", info), *dirFormer = NULL;
+	char *personalDir = obtain_environment_secret("HOME", info), *dirFormer
+	= NULL;
 	char formerDir[128] = {0};
 	int error_code = 0;
 
@@ -68,7 +69,8 @@ int handle_shell_cd(mt_code_info *info)
  * define_curr_dir - a function that sets the working directory
  * @info: struct for the program's data
  * @createdDir: this represents the working directory
- * Return: if success it returns (0), or other number if declared in the arguments
+ * Return: if success it returns (0), or other number
+ * if declared in the arguments
  */
 int define_curr_dir(mt_code_info *info, char *createdDir)
 {
@@ -94,7 +96,8 @@ int define_curr_dir(mt_code_info *info, char *createdDir)
 /**
  * handle_shell_help - displays the space where the shell is executed
  * @info: represents the data stored in the program
- * Return: it returns (0) on success, or other numbers if declared in the arguments
+ * Return: it returns (0) on success, or other numbers
+ * if declared in the arguments
  */
 int handle_shell_help(mt_code_info *info)
 {
