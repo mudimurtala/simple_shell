@@ -36,17 +36,17 @@ int locate_prog(mt_code_info *info)
 		outcome_status = validate_file(dirCollections[m]);
 		if (outcome_status == 0 || outcome_status == 126)
 		{
-		/* the file was found, is not a directory and has execute permisions*/
+			/* the file was found, is not a directory and has execute permisions*/
 			errno = 0;
 			free(info->parsed_items[0]);
 			info->parsed_items[0] = _strclone(dirCollections[m]);
-			cleanup_pointer_array(dirCollections);
+			deallocate_pointer_elements(dirCollections);
 			return (outcome_status);
 		}
 	}
 	free(info->parsed_items[0]);
 	info->parsed_items[0] = NULL;
-	cleanup_pointer_array(dirCollections);
+	deallocate_pointer_elements(dirCollections);
 	return (outcome_status);
 }
 
