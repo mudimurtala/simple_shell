@@ -15,7 +15,7 @@ int _accessline(mt_code_info *info)
 	/* check if doesnot exist more commands in the array */
 	/* and checks the logical operators */
 	if (!handle_array_inputs[0] || (handle_array_operators[0] == '&' &&
-errno != 0) || (handle_array_operators[0] == '|' && errno == 0))
+				errno != 0) || (handle_array_operators[0] == '|' && errno == 0))
 	{
 		/*free the memory allocated in the array if it exists */
 		for (m = 0; handle_array_inputs[m]; m++)
@@ -51,16 +51,16 @@ errno != 0) || (handle_array_operators[0] == '|' && errno == 0))
 
 
 /**
-* inspect_logical_con - will handle logical operators && and ||
-* @handle_array_inputs: array of the commands.
-* @m: index in the array_commands to be checked
-* @handle_array_operators: handle the array of the
-* logical operators for each previous command
-*
-* Return: index of the last command in the handle_array_inputs.
-*/
+ * inspect_logical_con - will handle logical operators && and ||
+ * @handle_array_inputs: array of the commands.
+ * @m: index in the array_commands to be checked
+ * @handle_array_operators: handle the array of the
+ * logical operators for each previous command
+ *
+ * Return: index of the last command in the handle_array_inputs.
+ */
 int inspect_logical_con(char *handle_array_inputs[],
-int m, char handle_array_operators[])
+		int m, char handle_array_operators[])
 {
 	char *transient = NULL;
 	int n;
