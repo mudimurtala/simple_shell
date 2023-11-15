@@ -32,11 +32,11 @@
  * @code_tag: the executable command name
  * @prompt_user: input that is read with _getline
  * @command_tag: pointer to the first user command input
- * @cmdExec_count: counts the commands executed
+ * @command_count: counts the commands executed
  * @fd: file descriptor to the input of commands
- * @toks: pointer to array of parsed input
+ * @parsed_items: pointer to array of parsed input
  * @environ: copy of the environ
- * @mt_list_alias: pointer array of aliases.
+ * @mt_listAlias: pointer array of aliases.
  */
 typedef struct elements
 {
@@ -51,8 +51,8 @@ typedef struct elements
 } mt_code_info;
 
 /**
- * struct  mt_internalCommands - struct for the builtins
- * @ mt_internalCommand: the name of the builtin
+ * struct mt_internalCommands - struct for the builtins
+ * @mt_internalCommand: the name of the builtin
  * @fn: the associated function to be called for each builtin
  */
 typedef struct mt_internalCommands
@@ -63,6 +63,13 @@ typedef struct mt_internalCommands
 
 
 /**************String helpers function ***************/
+/**
+ * _strlen -...
+ * _strclone -...
+ * _strcomp -...
+ * _strlink -...
+ * _revstr -...
+ */
 int _strlen(char *str); /* function to count the length of the string */
 char *_strclone(char *str); /* function to duplicate the string */
 int _strcomp(char *str1, char *str2, int x); /* function compare string*/
@@ -85,7 +92,8 @@ int mt_positionAlias(char *mtalias_str, mt_code_info *info);
 
 /****************Getline function**********************************/
 int _accessline(mt_code_info *info);
-int inspect_logical_con(char *handle_array_inputs[], int m, char     handle_array_operators[]);
+int inspect_logical_con(char *handle_array_inputs[],
+int m, char     handle_array_operators[]);
 
 
 /*******************Handles shell environment**************************/
