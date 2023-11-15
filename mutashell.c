@@ -11,7 +11,7 @@
 int main(int argc, char *argv[], char *env[])
 {
 	mt_code_info data_struct = {NULL}, *info = &data_struct;
-	char *userQuery = "#mutashell$ ";
+	char *userQuery = "";
 
 	load_data(info, argc, argv, env);
 

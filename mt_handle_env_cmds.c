@@ -44,8 +44,8 @@ int handle_shell_env(mt_code_info *info)
 			}
 			env_var_name_buffer[ind] = info->parsed_items[1][ind];
 		}
-		errno = 2;
-		perror(info->command_tag);
+		
+		perror("Error");
 		errno = 127;
 	}
 	return (0);
@@ -66,7 +66,7 @@ int set_env_var(mt_code_info *info)
 	if (info->parsed_items[3] != NULL)
 	{
 		errno = E2BIG;
-		perror(info->command_tag);
+		perror("Error");
 		return (5);
 	}
 
@@ -90,7 +90,7 @@ int unset_env_var(mt_code_info *info)
 	if (info->parsed_items[2] != NULL)
 	{
 		errno = E2BIG;
-		perror(info->command_tag);
+		perror("Error");
 		return (5);
 	}
 	clear_environment_secret(info->parsed_items[1], info);
