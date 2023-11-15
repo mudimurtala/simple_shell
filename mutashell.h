@@ -63,18 +63,21 @@ typedef struct mt_internalCommands
 
 
 /**************String helpers function ***************/
-/**
- * _strlen -...
- * _strclone -...
- * _strcomp -...
- * _strlink -...
- * _revstr -...
- */
-int _strlen(char *str); /* function to count the length of the string */
-char *_strclone(char *str); /* function to duplicate the string */
-int _strcomp(char *str1, char *str2, int x); /* function compare string*/
-char *_strlink(char *str1, char *str2); /* function to concatenate strings */
-void _revstr(char *str); /* function to reverse the strings */
+
+/* This function counts */
+int _strlen(char *str);
+
+/* function to duplicate the string */
+char *_strclone(char *str);
+
+ /* function compare string*/
+int _strcomp(char *str1, char *str2, int x);
+
+/* function to concatenate strings */
+char *_strlink(char *str1, char *str2);
+
+ /* function to reverse the strings */
+void _revstr(char *str);
 
 
 
