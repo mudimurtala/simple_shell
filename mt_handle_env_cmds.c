@@ -1,5 +1,7 @@
 #include "mutashell.h"
 
+int handle_shell_env(mt_code_info *info);
+
 /**
  * handle_shell_env - shows the environment where the shell runs
  * @info: struct for the program's data
@@ -44,7 +46,7 @@ int handle_shell_env(mt_code_info *info)
 			}
 			env_var_name_buffer[ind] = info->parsed_items[1][ind];
 		}
-		
+
 		perror("Error");
 		errno = 127;
 	}

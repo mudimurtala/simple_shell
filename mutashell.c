@@ -43,7 +43,7 @@ void terminate_gracefully(int opr IGNORED_PARAM)
  * load_data - load and initialize the data of the program
  * @info: this points to the structure
  * @argv: represents the parameter passed
- * @env: this is the environment of the running program
+ * @environ: this is the environment of the running program
  * @argc: represents what is received from the user
  */
 void load_data(mt_code_info *info, int argc, char *argv[], char **environ)
