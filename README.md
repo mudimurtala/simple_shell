@@ -4,7 +4,7 @@ https://drive.google.com/file/d/1oUJHumD20f8ibXyAJPwYxrBE6i1PcQez/view?usp=drive
 
 0x16. C - Simple Shell
 C
-This is a Group project
+This's a Group project
 Syscall
  By: Julien Barbier
  Weight: 10
